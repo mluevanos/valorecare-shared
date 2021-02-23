@@ -30,7 +30,7 @@ namespace Sabio.Services
 
 
         //SEARCH Events 
-        public Paged<Event> SearchPaginated(string Query, int PageIndex, int PageSize)
+        public Paged<Event> SearchPaginated(string query, int pageIndex, int pageSize)
         {
             Paged<Event> pagedList = null;
             List<Event> list = null;
@@ -40,16 +40,16 @@ namespace Sabio.Services
 
             _data.ExecuteCmd(procName, delegate (SqlParameterCollection inputCollection)
             {
-                inputCollection.AddWithValue("@PageIndex", PageIndex);
-                inputCollection.AddWithValue("@PageSize", PageSize);
-                inputCollection.AddWithValue("@Query", Query);
+                inputCollection.AddWithValue("@PageIndex", pageIndex);
+                inputCollection.AddWithValue("@PageSize", pageSize);
+                inputCollection.AddWithValue("@Query", query);
             }, delegate (IDataReader reader, short set)
                 {
                     Event aEvent = new Event();
 
-                    int stardingIdex = 0;
-                    aEvent.Id = reader.GetSafeInt32(stardingIdex++);
-                    aEvent.Name = reader.GetSafeString(stardingIdex++);
+                    int startingIndex = 0;
+                    aEvent.Id = reader.GetSafeInt32(startingIndex++);
+                    aEvent.Name = reader.GetSafeString(startingIndex++);
 
                     if (totalCount == 0)
                     {
@@ -62,7 +62,7 @@ namespace Sabio.Services
                     list.Add(aEvent);
                 });
             { 
-                pagedList = new Paged<Event>(list, PageIndex, PageSize, totalCount);
+                pagedList = new Paged<Event>(list, pageIndex, pageSize, totalCount);
             }
 
             return pagedList;
