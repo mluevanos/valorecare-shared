@@ -1,4 +1,4 @@
-### Valorecare: Instant senior care for when you need it most!
+### Instant senior care for when you need it most!
 
 ### Source code examples from Valorecare including:
 
