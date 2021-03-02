@@ -19,6 +19,7 @@ const allEvents = (pageIndex, pageSize) => {
   };
   return axios(config).then(onGlobalSuccess).catch(onGlobalError);
 };
+
 const updateEvent = (payload) => {
   const config = {
     method: 'PUT',
@@ -126,46 +127,6 @@ const getDetailsById = (eventId) => {
   };
   return axios(config).then(onGlobalSuccess).catch(onGlobalError);
 };
-const getByType = (type) => {
-  const config = {
-    method: 'GET',
-    url: endpoint + `/${type}`,
-    withCredentials: true,
-    crossdomain: true,
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  };
-  return axios(config).then(onGlobalSuccess).catch(onGlobalError);
-};
-const getByStatus = (status) => {
-  const config = {
-    method: 'GET',
-    url: endpoint + `/${status}`,
-    withCredentials: true,
-    crossdomain: true,
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  };
-  return axios(config).then(onGlobalSuccess).catch(onGlobalError);
-};
-
-const getSearch = (query, pageIndex, pageSize) => {
-  const config = {
-    method: 'GET',
-    url:
-      endpoint +
-      `/search?query=${query}&pageIndex=${pageIndex}&pageSize=${pageSize}`,
-    crossdomain: true,
-    withCredentials: true,
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  };
-
-  return axios(config).then(onGlobalSuccess).catch(onGlobalError);
-};
 
 const searchv2 = (pageIndex, pageSize, query) => {
   const config = {
@@ -182,9 +143,6 @@ const searchv2 = (pageIndex, pageSize, query) => {
 };
 
 export {
-  getSearch,
-  getByStatus,
-  getByType,
   allEvents,
   deleteEvent,
   updateEvent,

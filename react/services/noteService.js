@@ -38,17 +38,6 @@ const searchNotesByProvider = (searchQuery, pageIndex, pageSize) => {
   return axios(config).then(onGlobalSuccess).catch(onGlobalError);
 };
 
-const searchBySeeker = (searchQuery) => {
-  const config = {
-    method: "GET",
-    url: baseUrl + `/search?searchQuery=${searchQuery}`,
-    crossdomain: true,
-    withCredentials: true,
-    headers: { "Content-Type": "application/json" },
-  };
-
-  return axios(config).then(onGlobalSuccess).catch(onGlobalError);
-};
 
 //Select
 const getNotesBySeekerId = (pageIndex, pageSize) => {
@@ -67,18 +56,6 @@ const getById = (id) => {
   const config = {
     method: "GET",
     url: baseUrl + `/${id}`,
-    crossdomain: true,
-    withCredentials: true,
-    headers: { "Content-Type": "application/json" },
-  };
-
-  return axios(config).then(onGlobalSuccess).catch(onGlobalError);
-};
-
-const getAll = (pageIndex, pageSize) => {
-  const config = {
-    method: "GET",
-    url: baseUrl + `?pageIndex=${pageIndex}&pageSize=${pageSize}`,
     crossdomain: true,
     withCredentials: true,
     headers: { "Content-Type": "application/json" },
@@ -153,13 +130,11 @@ const deleteById = (id) => {
 };
 
 export {
-  getAll,
   getById,
   getCreatedBy,
   add,
   updateById,
   deleteById,
-  searchBySeeker,
   searchNotesBySeeker,
   searchNotesByProvider,
   getNotesBySeekerId,

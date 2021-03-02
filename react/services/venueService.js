@@ -20,20 +20,6 @@ const getById = (id) => {
   return axios(config).then(onGlobalSuccess).catch(onGlobalError);
 };
 
-const getAllPaginated = (pageIndex, pageSize) => {
-  const config = {
-    method: "GET",
-    url: endpointUrl + `/paginate?pageIndex=${pageIndex}&pageSize=${pageSize}`,
-    crossdomain: true,
-    withCredentials: true,
-    headers: {
-      "Content-Type": "application/json",
-    },
-  };
-
-  return axios(config);
-};
-
 const getAllPaginatedV2 = (pageIndex, pageSize) => {
   const config = {
     method: "GET",
@@ -47,20 +33,6 @@ const getAllPaginatedV2 = (pageIndex, pageSize) => {
   };
 
   return axios(config);
-};
-
-const searchV2 = (pageIndex, pageSize, query) => {
-  const config = {
-    method: "GET",
-    url:
-      endpointUrl +
-      `/searchv2?pageIndex=${pageIndex}&pageSize=${pageSize}&query=${query}`,
-    crossdomain: true,
-    withCredentials: true,
-    headers: { "Content-Type": "application/json" },
-  };
-
-  return axios(config).then(onGlobalSuccess).catch(onGlobalError);
 };
 
 const add = (payload) => {
@@ -106,26 +78,11 @@ const remove = (id) => {
 
   return axios(config).then(onGlobalSuccess).catch(onGlobalError);
 };
-const searchByVenue = (query) => {
-  const config = {
-    method: "GET",
-    url: endpointUrl + `/search?name=${query}`,
-    withCredentials: true,
-    crossdomain: true,
-    headers: {
-      "Content-Type": "application/json",
-    },
-  };
-  return axios(config).then(onGlobalSuccess).catch(onGlobalError);
-};
 
 export {
-  searchByVenue,
   getById,
-  getAllPaginated,
   getAllPaginatedV2,
   add,
   update,
-  remove,
-  searchV2,
+  remove
 };
